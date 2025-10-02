@@ -31,3 +31,11 @@ def dijkstra(grafo, origem, destino):
                 distancias[vizinho] = novo_custo
                 predecessores[vizinho] = no_atual
                 heapq.heappush(fila, (novo_custo, vizinho))
+
+    caminho = []
+    no = destino
+    while no is not None:
+        caminho.insert(0, no)
+        no = predecessores[no]
+
+    return caminho, distancias[destino]
