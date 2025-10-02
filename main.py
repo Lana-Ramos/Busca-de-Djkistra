@@ -39,3 +39,23 @@ def dijkstra(grafo, origem, destino):
         no = predecessores[no]
 
     return caminho, distancias[destino]
+
+if __name__ == "__main__":
+    grafo = abrir_grafo("grafo.json")
+
+    if grafo:
+        try:
+            origem = input("Digite o nó de origem: ").strip()
+            destino = input("Digite o nó de destino: ").strip()
+
+            if origem not in grafo or destino not in grafo:
+                raise ValueError("Origem ou destino inválidos!")
+
+            caminho, custo = dijkstra(grafo, origem, destino)
+            if caminho:
+                print(f"\nMelhor caminho: {' -> '.join(caminho)}")
+                print(f"Custo total: {custo}")
+        except ValueError as e:
+            print(f"Erro: {e}")
+        except Exception as e:
+            print(f"Ocorreu um erro inesperado: {e}")
